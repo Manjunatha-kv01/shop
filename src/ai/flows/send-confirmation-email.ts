@@ -11,7 +11,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-export const ConfirmationEmailInputSchema = z.object({
+const ConfirmationEmailInputSchema = z.object({
   name: z.string().describe('The customer\'s name.'),
   email: z.string().email().describe('The customer\'s email address.'),
   phoneNumber: z.string().describe('The customer\'s phone number.'),
@@ -24,7 +24,7 @@ export const ConfirmationEmailInputSchema = z.object({
 
 export type ConfirmationEmailInput = z.infer<typeof ConfirmationEmailInputSchema>;
 
-export const ConfirmationEmailOutputSchema = z.object({
+const ConfirmationEmailOutputSchema = z.object({
   subject: z.string().describe('The subject line of the email.'),
   body: z.string().describe('The HTML body of the email.'),
 });
