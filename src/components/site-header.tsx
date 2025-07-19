@@ -29,6 +29,12 @@ export function SiteHeader() {
               >
                 Home
               </Link>
+              <Link
+                href="/contact"
+                className="text-foreground/60 transition-colors hover:text-foreground"
+              >
+                Contact
+              </Link>
             </nav>
             <div className="flex items-center gap-2">
               <Link href="/wishlist">
