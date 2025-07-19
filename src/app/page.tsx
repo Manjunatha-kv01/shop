@@ -5,31 +5,15 @@ import { useState, useEffect } from 'react';
 import { products } from '@/lib/data';
 import type { Product } from '@/lib/types';
 import { ProductCard } from '@/components/product-card';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HomePage() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    let tempProducts = products;
-
-    if (searchTerm) {
-      tempProducts = tempProducts.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    setFilteredProducts(tempProducts);
-  };
 
   useEffect(() => {
-    handleSearch();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    setFilteredProducts(products);
   }, []);
 
   return (
@@ -50,7 +34,7 @@ export default function HomePage() {
                  </Link>
               </Button>
                <Button asChild size="lg" variant="outline">
-                 <Link href="#">
+                 <Link href="/about">
                     Learn More
                  </Link>
               </Button>
@@ -60,23 +44,6 @@ export default function HomePage() {
 
       <div id="products-section" className="container px-4 sm:px-6 lg:px-8 py-12 md:py-16">
           <main>
-             <div className="mb-10 text-center">
-                <h2 className="text-3xl font-bold tracking-tight">Featured Products</h2>
-                <p className="mt-2 text-muted-foreground">Discover our hand-picked selection of top-rated products.</p>
-             </div>
-             <form onSubmit={handleSearch} className="mb-12 max-w-2xl mx-auto">
-                 <div className="relative">
-                    <Input
-                      placeholder="Search for products..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pr-12 h-12 text-base"
-                    />
-                    <Button type="submit" size="icon" className="absolute top-0 right-0 h-full w-12 rounded-l-none bg-primary text-primary-foreground hover:bg-primary/90">
-                      <Search className="h-5 w-5" />
-                    </Button>
-                 </div>
-              </form>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
@@ -84,9 +51,19 @@ export default function HomePage() {
             </div>
             {filteredProducts.length === 0 && (
                 <div className="text-center py-10 col-span-full">
-                    <p className="text-muted-foreground">No products found matching your criteria.</p>
+                    <p className="text-muted-foreground">No products found.</p>
                 </div>
             )}
+             <div className="text-center mt-16">
+                <p className="text-lg text-muted-foreground">
+                    After you have purchased your items, please fill out our form.
+                </p>
+                <Button asChild className="mt-4">
+                    <Link href="/contact">
+                        Go to Form
+                    </Link>
+                </Button>
+            </div>
           </main>
       </div>
     </>
