@@ -49,6 +49,12 @@ export default function CheckoutPage() {
     router.push('/order/confirmation');
   };
 
+  const shippingCharge = 10.00;
+  const gstRate = 0.18; // 18%
+  const gstAmount = totalPrice * gstRate;
+  const finalTotal = totalPrice + shippingCharge + gstAmount;
+
+
   if (cartItems.length === 0) {
     return (
         <div className="container px-4 sm:px-6 lg:px-8 py-12 text-center">
@@ -83,9 +89,23 @@ export default function CheckoutPage() {
                   <p className="font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
                 </div>
               ))}
-               <div className="border-t pt-4 mt-4 flex justify-between font-bold text-lg">
-                <p>Total</p>
-                <p>${totalPrice.toFixed(2)}</p>
+               <div className="border-t pt-4 mt-4 space-y-2">
+                <div className="flex justify-between text-muted-foreground">
+                  <p>Subtotal</p>
+                  <p>${totalPrice.toFixed(2)}</p>
+                </div>
+                <div className="flex justify-between text-muted-foreground">
+                  <p>GST (18%)</p>
+                  <p>${gstAmount.toFixed(2)}</p>
+                </div>
+                 <div className="flex justify-between text-muted-foreground">
+                  <p>Shipping Charge</p>
+                  <p>${shippingCharge.toFixed(2)}</p>
+                </div>
+                <div className="border-t pt-2 mt-2 flex justify-between font-bold text-lg">
+                  <p>Total</p>
+                  <p>${finalTotal.toFixed(2)}</p>
+                </div>
                </div>
             </CardContent>
           </Card>
