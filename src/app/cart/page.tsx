@@ -131,6 +131,16 @@ export default function CartPage() {
           </Card>
         </div>
       </div>
+      <div className="text-center mt-12">
+          <p className="text-lg text-muted-foreground">
+              After you have purchased your items, please fill out our form.
+          </p>
+          <Button asChild className="mt-4">
+              <Link href="/contact">
+                  Go to Form
+              </Link>
+          </Button>
+      </div>
     </div>
   );
 }
