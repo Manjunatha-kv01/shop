@@ -6,13 +6,10 @@ import { Package2, Heart, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/use-cart';
 import { useWishlist } from '@/hooks/use-wishlist';
-import { CartSheet } from './cart-sheet';
-import { useState } from 'react';
 
 export function SiteHeader() {
   const { itemCount: cartItemCount } = useCart();
   const { itemCount: wishlistItemCount } = useWishlist();
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
     <>
@@ -56,26 +53,26 @@ export function SiteHeader() {
                   </div>
                 </Button>
               </Link>
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Open cart"
-                onClick={() => setIsCartOpen(true)}
-              >
-                <div className="relative">
-                  <ShoppingCart className="h-5 w-5" />
-                  {cartItemCount > 0 && (
-                    <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-accent-foreground text-xs">
-                      {cartItemCount}
-                    </span>
-                  )}
-                </div>
-              </Button>
+              <Link href="/cart">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Open cart"
+                >
+                  <div className="relative">
+                    <ShoppingCart className="h-5 w-5" />
+                    {cartItemCount > 0 && (
+                      <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-accent-foreground text-xs">
+                        {cartItemCount}
+                      </span>
+                    )}
+                  </div>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </header>
-      <CartSheet isOpen={isCartOpen} onOpenChange={setIsCartOpen} />
     </>
   );
 }
