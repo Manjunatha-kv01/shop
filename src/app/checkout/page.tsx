@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -58,7 +59,7 @@ export default function CheckoutPage() {
 
   if (cartItems.length === 0) {
     return (
-        <div className="container py-12 text-center">
+        <div className="container px-4 sm:px-6 lg:px-8 py-12 text-center">
             <h1 className="text-2xl font-semibold">Your cart is empty.</h1>
             <p className="text-muted-foreground mt-2">Add items to your cart before proceeding to checkout.</p>
         </div>
@@ -67,7 +68,7 @@ export default function CheckoutPage() {
 
 
   return (
-    <div className="container py-12">
+    <div className="container px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-3xl font-bold text-center mb-8">Checkout</h1>
       <div className="grid md:grid-cols-2 gap-12">
         <div>

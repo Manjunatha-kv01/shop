@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useWishlist } from '@/hooks/use-wishlist';
@@ -10,7 +11,7 @@ export default function WishlistPage() {
   const { wishlistItems } = useWishlist();
 
   return (
-    <div className="container py-12">
+    <div className="container px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold">Your Wishlist</h1>
         <span className="text-lg text-muted-foreground">

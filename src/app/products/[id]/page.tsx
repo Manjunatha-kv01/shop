@@ -1,3 +1,4 @@
+
 import { products } from '@/lib/data';
 import { ProductDetails } from '@/components/product-details';
 import { notFound } from 'next/navigation';
@@ -29,7 +30,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="container py-8 md:py-12">
+    <div className="container px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <ProductDetails product={product} />
     </div>
   );

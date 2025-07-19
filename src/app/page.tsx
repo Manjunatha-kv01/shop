@@ -34,7 +34,7 @@ export default function HomePage() {
   return (
     <>
       <section className="bg-primary/5 text-center py-16 md:py-20">
-        <div className="container">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary tracking-tight">
             Welcome to ShopSphere
           </h1>
@@ -45,7 +45,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <div className="container px-4 sm:px-6 lg:px-8 py-8 md:py-12">
           <main>
              <form onSubmit={handleSearch} className="mb-8 max-w-md mx-auto">
                  <div className="relative">
