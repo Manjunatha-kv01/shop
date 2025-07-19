@@ -20,7 +20,7 @@ const WhatsAppIcon = () => (
 
 export function WhatsappChat() {
     const businessNumber = '1234567890'; // Replace with your business number
-    const message = 'Hi, thank you so much for visiting';
+    const message = 'Hi! Please provide your details:\n\nName:\nPhone Number:\nEmail ID:';
     const whatsappUrl = `https://wa.me/${businessNumber}?text=${encodeURIComponent(message)}`;
 
   return (
