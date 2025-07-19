@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect } from 'react';
@@ -33,7 +34,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         <ProductImageCarousel images={product.images} />
         <div className="flex flex-col">
           <p className="text-sm font-medium text-primary">{product.category}</p>
-          <h1 className="text-3xl md:text-4xl font-bold mt-2">{product.name}</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mt-2">{product.name}</h1>
           <div className="mt-4 flex items-center gap-4">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
@@ -52,8 +53,8 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               ({product.reviews.length} reviews)
             </p>
           </div>
-          <p className="text-3xl md:text-4xl font-bold mt-4">${product.price.toFixed(2)}</p>
-          <p className="mt-4 text-foreground/80">{product.description}</p>
+          <p className="text-3xl font-bold mt-4">${product.price.toFixed(2)}</p>
+          <p className="mt-4 text-foreground/80 leading-relaxed">{product.description}</p>
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
             <Button
               size="lg"
@@ -67,6 +68,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               size="lg"
               onClick={() => toggleWishlist(product)}
               className="w-full sm:w-auto"
+              aria-label={inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
             >
               <Heart
                 className={cn(

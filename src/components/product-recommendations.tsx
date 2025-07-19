@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -40,7 +41,7 @@ export function ProductRecommendations({
     <div>
       <h2 className="text-2xl font-bold mb-6">You Might Also Like</h2>
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {[...Array(4)].map((_, i) => (
             <div key={i} className="space-y-2">
               <Skeleton className="h-48 w-full" />
@@ -50,7 +51,7 @@ export function ProductRecommendations({
           ))}
         </div>
       ) : recommendations.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {recommendations.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

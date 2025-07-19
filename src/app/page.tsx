@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -34,17 +35,17 @@ export default function HomePage() {
     <>
       <section className="bg-primary/5 text-center py-16 md:py-20">
         <div className="container">
-          <h1 className="text-4xl md:text-6xl font-bold text-primary tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary tracking-tight">
             Welcome to ShopSphere
           </h1>
-          <p className="mt-4 text-lg text-foreground/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-md md:text-lg text-foreground/80 max-w-2xl mx-auto">
             Discover a world of quality products. Your one-stop shop for
             electronics, apparel, and more.
           </p>
         </div>
       </section>
 
-      <div className="container py-12">
+      <div className="container py-8 md:py-12">
           <main>
              <form onSubmit={handleSearch} className="mb-8 max-w-md mx-auto">
                  <div className="relative">
@@ -59,7 +60,7 @@ export default function HomePage() {
                     </Button>
                  </div>
               </form>
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
