@@ -52,12 +52,12 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               ({product.reviews.length} reviews)
             </p>
           </div>
-          <p className="text-4xl font-bold mt-4">${product.price.toFixed(2)}</p>
+          <p className="text-3xl md:text-4xl font-bold mt-4">${product.price.toFixed(2)}</p>
           <p className="mt-4 text-foreground/80">{product.description}</p>
-          <div className="mt-6 flex items-center gap-4">
+          <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
             <Button
               size="lg"
-              className="flex-1 bg-primary hover:bg-primary/90"
+              className="w-full sm:w-auto flex-1 bg-primary hover:bg-primary/90"
               onClick={() => addToCart(product)}
             >
               <ShoppingCart className="mr-2 h-5 w-5" /> Add to Cart
@@ -66,6 +66,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               variant="outline"
               size="lg"
               onClick={() => toggleWishlist(product)}
+              className="w-full sm:w-auto"
             >
               <Heart
                 className={cn(
@@ -73,6 +74,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                   inWishlist && 'fill-destructive text-destructive'
                 )}
               />
+              <span className='sm:hidden ml-2'>
+                {inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+              </span>
             </Button>
           </div>
         </div>

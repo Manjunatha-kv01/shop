@@ -32,7 +32,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="bg-primary/5 text-center py-20">
+      <section className="bg-primary/5 text-center py-16 md:py-20">
         <div className="container">
           <h1 className="text-4xl md:text-6xl font-bold text-primary tracking-tight">
             Welcome to ShopSphere
@@ -59,7 +59,7 @@ export default function HomePage() {
                     </Button>
                  </div>
               </form>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
