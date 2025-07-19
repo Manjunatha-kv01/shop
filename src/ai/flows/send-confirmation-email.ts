@@ -1,20 +1,20 @@
 'use server';
 
 /**
- * @fileOverview A flow for generating a customer confirmation email.
+ * @fileOverview A flow for generating a customer confirmation email and an admin notification email.
  *
- * - generateConfirmationEmail - Generates the email content.
+ * - generateConfirmationEmail - Generates the email content for both customer and admin.
  * - ConfirmationEmailInput - The input type for the email generation.
- * - ConfirmationEmailOutput - The return type for the email generation.
+ * - ConfirmationEmailOutput - The return type for the customer email generation.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const ConfirmationEmailInputSchema = z.object({
-  name: z.string().describe('The customer\'s name.'),
-  email: z.string().email().describe('The customer\'s email address.'),
-  phoneNumber: z.string().describe('The customer\'s phone number.'),
+  name: z.string().describe("The customer's name."),
+  email: z.string().email().describe("The customer's email address."),
+  phoneNumber: z.string().describe("The customer's phone number."),
   deliveryLocation: z.string().describe('The delivery location.'),
   pincode: z.string().describe('The delivery pincode.'),
   numberOfItems: z.string().describe('The number of items ordered.'),
@@ -37,7 +37,7 @@ export async function generateConfirmationEmail(input: ConfirmationEmailInput): 
 }
 
 
-const prompt = ai.definePrompt({
+const customerEmailPrompt = ai.definePrompt({
   name: 'generateConfirmationEmailPrompt',
   input: {schema: ConfirmationEmailInputSchema},
   output: {schema: ConfirmationEmailOutputSchema},
@@ -73,16 +73,43 @@ const sendConfirmationEmailFlow = ai.defineFlow(
     outputSchema: ConfirmationEmailOutputSchema,
   },
   async (input) => {
-    const {output} = await prompt(input);
+    // Generate the customer confirmation email
+    const {output: customerEmailOutput} = await customerEmailPrompt(input);
     
-    // In a real application, you would add your email sending logic here.
+    // In a real application, you would add your email sending logic here for the customer.
     // For example, using a service like Nodemailer, SendGrid, or AWS SES.
-    console.log('---Simulating Sending Email---');
+    console.log('---Simulating Sending Customer Confirmation Email---');
     console.log(`To: ${input.email}`);
-    console.log(`Subject: ${output!.subject}`);
-    console.log(`Body: \n${output!.body}`);
-    console.log('-----------------------------');
+    console.log(`Subject: ${customerEmailOutput!.subject}`);
+    console.log(`Body: \n${customerEmailOutput!.body}`);
+    console.log('--------------------------------------------------');
 
-    return output!;
+    // Prepare and log the admin notification email
+    const adminEmailSubject = `New Order Submission from ${input.name}`;
+    const adminEmailBody = `
+      <h1>New Order Submission</h1>
+      <p>You have received a new order through the contact form. Here are the details:</p>
+      <ul>
+        <li><strong>Name:</strong> ${input.name}</li>
+        <li><strong>Email:</strong> ${input.email}</li>
+        <li><strong>Phone Number:</strong> ${input.phoneNumber}</li>
+        <li><strong>Delivery Location:</strong> ${input.deliveryLocation}</li>
+        <li><strong>Pincode:</strong> ${input.pincode}</li>
+        <li><strong>Number of Items:</strong> ${input.numberOfItems}</li>
+        <li><strong>Item Codes:</strong> ${input.itemsCode}</li>
+        <li><strong>Total Cost:</strong> $${input.itemsCost}</li>
+      </ul>
+      <p>The customer has also uploaded a payment receipt.</p>
+    `;
+
+    // In a real application, you would send this email to the admin.
+    console.log('---Simulating Sending Admin Notification Email---');
+    console.log('To: suryamv1100@gmail.com');
+    console.log(`Subject: ${adminEmailSubject}`);
+    console.log(`Body: \n${adminEmailBody}`);
+    console.log('---------------------------------------------');
+
+
+    return customerEmailOutput!;
   }
 );
