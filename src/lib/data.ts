@@ -3,6 +3,7 @@ import type { Product, Category } from './types';
 export const categories: Category[] = [
   { id: 'electronics', name: 'Electronics' },
   { id: 'apparel', name: 'Apparel' },
+  { id: 'home-goods', name: 'Home Goods' },
 ];
 
 export const products: Product[] = [
@@ -12,7 +13,7 @@ export const products: Product[] = [
     description:
       'Immerse yourself in sound with these premium wireless headphones. Featuring industry-leading noise cancellation, 30-hour battery life, and crystal-clear audio quality for music and calls.',
     price: 349.99,
-    images: ['https://placehold.co/600x600', 'https://placehold.co/600x600', 'https://placehold.co/600x600'],
+    images: ['https://placehold.co/600x600.png', 'https://placehold.co/600x600.png', 'https://placehold.co/600x600.png'],
     category: 'Electronics',
     rating: 4.8,
     reviews: [
@@ -26,7 +27,7 @@ export const products: Product[] = [
     description:
       'Stay connected and track your fitness goals with this sleek smartwatch. It offers GPS tracking, heart rate monitoring, smartphone notifications, and a vibrant, customizable display.',
     price: 249.50,
-    images: ['https://placehold.co/600x600', 'https://placehold.co/600x600'],
+    images: ['https://placehold.co/600x600.png', 'https://placehold.co/600x600.png'],
     category: 'Electronics',
     rating: 4.6,
     reviews: [
@@ -39,7 +40,7 @@ export const products: Product[] = [
     description:
       'A wardrobe essential, this classic t-shirt is made from 100% premium, soft-touch cotton. Its timeless design offers both comfort and style for everyday wear.',
     price: 29.99,
-    images: ['https://placehold.co/600x600', 'https://placehold.co/600x600'],
+    images: ['https://placehold.co/600x600.png', 'https://placehold.co/600x600.png'],
     category: 'Apparel',
     rating: 4.5,
     reviews: [
@@ -53,7 +54,7 @@ export const products: Product[] = [
     description:
       'Flattering and comfortable, these high-waisted jeans are crafted from stretch-denim for a perfect fit. A versatile piece that can be dressed up or down.',
     price: 89.00,
-    images: ['https://placehold.co/600x600', 'https://placehold.co/600x600', 'https://placehold.co/600x600'],
+    images: ['https://placehold.co/600x600.png', 'https://placehold.co/600x600.png', 'https://placehold.co/600x600.png'],
     category: 'Apparel',
     rating: 4.7,
     reviews: [
@@ -66,7 +67,7 @@ export const products: Product[] = [
     description:
       'Experience breathtaking clarity and vibrant colors with this 55-inch 4K Smart TV. Access all your favorite streaming apps directly from the intuitive home screen.',
     price: 499.99,
-    images: ['https://placehold.co/600x600'],
+    images: ['https://placehold.co/600x600.png'],
     category: 'Electronics',
     rating: 4.9,
     reviews: [
@@ -79,7 +80,7 @@ export const products: Product[] = [
     description:
       'Take your music anywhere with this compact and powerful Bluetooth speaker. It\'s waterproof, dustproof, and boasts a 12-hour battery life for non-stop entertainment.',
     price: 59.95,
-    images: ['https://placehold.co/600x600', 'https://placehold.co/600x600'],
+    images: ['https://placehold.co/600x600.png', 'https://placehold.co/600x600.png'],
     category: 'Electronics',
     rating: 4.5,
     reviews: [],
@@ -90,7 +91,7 @@ export const products: Product[] = [
     description:
       'Complete your formal look with these elegant dress shoes, crafted from genuine leather. They feature a cushioned insole for all-day comfort and a durable outsole for longevity.',
     price: 120.00,
-    images: ['https://placehold.co/600x600'],
+    images: ['https://placehold.co/600x600.png'],
     category: 'Apparel',
     rating: 4.6,
     reviews: [
@@ -103,12 +104,58 @@ export const products: Product[] = [
     description:
       'Engineered for performance, these running sneakers provide exceptional cushioning and support. The lightweight, breathable mesh upper keeps your feet cool and comfortable on the go.',
     price: 110.00,
-    images: ['https://placehold.co/600x600', 'https://placehold.co/600x600', 'https://placehold.co/600x600'],
+    images: ['https://placehold.co/600x600.png', 'https://placehold.co/600x600.png', 'https://placehold.co/600x600.png'],
     category: 'Apparel',
     rating: 4.8,
     reviews: [
       { id: 'rev_9', author: 'Sarah Miller', rating: 5, text: 'So light and comfortable! It feels like running on clouds.', date: '2023-10-05' },
       { id: 'rev_10', author: 'Jessica Davis', rating: 4, text: 'Great support for my daily runs. They run a half-size small, though.', date: '2023-09-30' },
+    ],
+  },
+  {
+    id: 'prod_9',
+    name: 'Robotic Vacuum Cleaner',
+    description: 'Keep your floors spotless with this intelligent robotic vacuum. It maps your home, avoids obstacles, and automatically recharges when needed.',
+    price: 299.99,
+    images: ['https://placehold.co/600x600.png'],
+    category: 'Home Goods',
+    rating: 4.7,
+    reviews: [
+      { id: 'rev_11', author: 'Olivia Martinez', rating: 5, text: 'A total game-changer for keeping the house clean. I love it!', date: '2023-11-05' },
+    ],
+  },
+  {
+    id: 'prod_10',
+    name: 'Air Fryer & Convection Oven',
+    description: 'Enjoy crispy, delicious meals with less oil. This versatile air fryer also functions as a convection oven, toaster, and broiler.',
+    price: 129.99,
+    images: ['https://placehold.co/600x600.png'],
+    category: 'Home Goods',
+    rating: 4.9,
+    reviews: [
+      { id: 'rev_12', author: 'Daniel Taylor', rating: 5, text: 'Makes the best chicken wings! It\'s fast, easy to clean, and very versatile.', date: '2023-10-18' },
+    ],
+  },
+  {
+    id: 'prod_11',
+    name: 'Digital Photo Frame',
+    description: 'Display your favorite memories with this Wi-Fi enabled digital photo frame. Easily upload photos from your phone, and invite family to share theirs too.',
+    price: 89.99,
+    images: ['https://placehold.co/600x600.png'],
+    category: 'Electronics',
+    rating: 4.6,
+    reviews: [],
+  },
+  {
+    id: 'prod_12',
+    name: 'Classic Bomber Jacket',
+    description: 'A timeless bomber jacket that adds a cool, casual edge to any outfit. Made with a water-resistant shell and a comfortable quilted lining.',
+    price: 75.00,
+    images: ['https://placehold.co/600x600.png'],
+    category: 'Apparel',
+    rating: 4.7,
+    reviews: [
+      { id: 'rev_13', author: 'Ben Carter', rating: 5, text: 'Great jacket for the price. Fits well and looks stylish.', date: '2023-11-02' },
     ],
   },
 ];
