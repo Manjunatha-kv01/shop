@@ -26,10 +26,6 @@ const formSchema = z.object({
   address: z.string().min(1, 'Address is required'),
   city: z.string().min(1, 'City is required'),
   zipCode: z.string().min(5, 'Valid ZIP code is required'),
-  cardName: z.string().min(1, 'Name on card is required'),
-  cardNumber: z.string().length(16, 'Card number must be 16 digits'),
-  expiryDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, 'Invalid expiry date (MM/YY)'),
-  cvc: z.string().length(3, 'CVC must be 3 digits'),
 });
 
 export default function CheckoutPage() {
@@ -44,10 +40,6 @@ export default function CheckoutPage() {
       address: '',
       city: '',
       zipCode: '',
-      cardName: '',
-      cardNumber: '',
-      expiryDate: '',
-      cvc: '',
     },
   });
 
@@ -97,6 +89,22 @@ export default function CheckoutPage() {
                </div>
             </CardContent>
           </Card>
+           <Card className="mt-8">
+                <CardHeader>
+                  <CardTitle>Scan to Pay</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col items-center justify-center space-y-4">
+                  <Image
+                    src="https://placehold.co/300x300.png"
+                    alt="QR Code for payment"
+                    width={300}
+                    height={300}
+                    data-ai-hint="QR code"
+                    className="rounded-lg"
+                  />
+                   <p className="text-sm text-muted-foreground text-center">Scan the QR code with your payment app to complete the purchase.</p>
+                </CardContent>
+              </Card>
         </div>
         <div>
           <Form {...form}>
@@ -115,20 +123,6 @@ export default function CheckoutPage() {
                    <div className="flex gap-4">
                     <FormField control={form.control} name="city" render={({ field }) => ( <FormItem className="flex-1"><FormLabel>City</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
                     <FormField control={form.control} name="zipCode" render={({ field }) => ( <FormItem className="w-1/3"><FormLabel>ZIP Code</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Payment Details</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <FormField control={form.control} name="cardName" render={({ field }) => ( <FormItem><FormLabel>Name on Card</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
-                  <FormField control={form.control} name="cardNumber" render={({ field }) => ( <FormItem><FormLabel>Card Number</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
-                  <div className="flex gap-4">
-                    <FormField control={form.control} name="expiryDate" render={({ field }) => ( <FormItem className="flex-1"><FormLabel>Expiry (MM/YY)</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
-                    <FormField control={form.control} name="cvc" render={({ field }) => ( <FormItem className="w-1/3"><FormLabel>CVC</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
                   </div>
                 </CardContent>
               </Card>
