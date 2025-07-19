@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -28,6 +29,12 @@ export function SiteHeader() {
                 className="text-foreground/60 transition-colors hover:text-foreground"
               >
                 Home
+              </Link>
+              <Link
+                href="/about"
+                className="text-foreground/60 transition-colors hover:text-foreground"
+              >
+                About Us
               </Link>
               <Link
                 href="/contact"
