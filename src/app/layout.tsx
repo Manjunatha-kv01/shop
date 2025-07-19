@@ -5,6 +5,7 @@ import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
+import { WhatsappChat } from '@/components/whatsapp-chat';
 
 export const metadata: Metadata = {
   title: 'ShopSphere',
@@ -38,6 +39,7 @@ export default function RootLayout({
             <SiteFooter />
           </div>
           <Toaster />
+          <WhatsappChat />
         </AppProviders>
       </body>
     </html>
