@@ -18,6 +18,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Mail } from 'lucide-react';
+import { generateConfirmationEmail } from '@/ai/flows/send-confirmation-email';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters.'),
@@ -28,8 +29,10 @@ const formSchema = z.object({
   numberOfItems: z.coerce.number().min(1, 'Number of items must be at least 1.'),
   itemsCode: z.string().min(1, 'Item codes are required.'),
   itemsCost: z.coerce.number().min(0, 'Item cost cannot be negative.'),
-  paymentReceipt: z.any().refine((file) => file?.length == 1, 'Payment receipt is required.'),
+  paymentReceipt: z.any().refine((files) => files?.length == 1, 'Payment receipt is required.'),
 });
+
+type FormValues = z.infer<typeof formSchema>;
 
 // Placeholder server action
 async function handleSubmit(data: FormData) {
@@ -37,9 +40,22 @@ async function handleSubmit(data: FormData) {
     for (let [key, value] of data.entries()) {
         console.log(`${key}:`, value);
     }
-    // In a real application, you would process this data,
-    // handle the file upload, and send it to your backend service (e.g., Google Forms).
-    return { success: true, message: 'Form submitted successfully!' };
+    
+    const formValues: FormValues = Object.fromEntries(data.entries()) as any;
+    // The file is not easily serializable, so we don't pass it to the AI flow
+    const { paymentReceipt, ...emailInput } = formValues;
+
+    try {
+      await generateConfirmationEmail({
+          ...emailInput,
+          numberOfItems: String(emailInput.numberOfItems),
+          itemsCost: String(emailInput.itemsCost),
+      });
+      return { success: true, message: 'Form submitted successfully!' };
+    } catch(e) {
+      console.error(e);
+      return { success: false, message: 'Could not send confirmation email.' };
+    }
 }
 
 
@@ -64,8 +80,10 @@ export default function ContactPage() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const formData = new FormData();
-    Object.entries(values).forEach(([key, value]) => {
-      if (key === 'paymentReceipt') {
+    // A bit of a hack to make sure the file is handled correctly.
+    // We cast values to any to allow appending the FileList
+    Object.entries(values as any).forEach(([key, value]) => {
+      if (key === 'paymentReceipt' && value instanceof FileList) {
         formData.append(key, value[0]);
       } else {
         formData.append(key, String(value));
@@ -77,14 +95,14 @@ export default function ContactPage() {
     if (result.success) {
       toast({
         title: 'Form Submitted!',
-        description: 'Thank you for your submission. We will get back to you shortly.',
+        description: 'Thank you for your submission. A confirmation has been sent to your email.',
       });
       form.reset();
     } else {
        toast({
         variant: 'destructive',
         title: 'Something went wrong.',
-        description: 'Please try again later.',
+        description: result.message || 'Please try again later.',
       });
     }
   };
